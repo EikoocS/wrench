@@ -10,15 +10,25 @@ import org.python.core.PyString;
 import java.util.*;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 public class InterpreterGlobals implements Map<String,Object> {
     final PyDictionary pyGlobals;
 
+    /**
+     * Create a new InterpreterGlobals object with an empty set of global variables.
+     * */
     public InterpreterGlobals(){
         pyGlobals = new PyDictionary();
     }
+    /**
+     * Create a new InterpreterGlobals object with the given set of global variables.
+     * */
     public InterpreterGlobals(PyDictionary globals){
         this.pyGlobals = globals;
     }
+    /**
+     * Create a new InterpreterGlobals object with the given set of global variables.
+     * */
     public InterpreterGlobals(Map<String,Object> globals){
         var castGlobals = new HashMap<PyObject, PyObject>();
         for (var entry : globals.entrySet()) {
@@ -33,6 +43,11 @@ public class InterpreterGlobals implements Map<String,Object> {
     @Override public boolean containsKey(Object key) { return pyGlobals.containsKey(key); }
     @Override public boolean containsValue(Object value) { return pyGlobals.containsValue(value); }
     @Override public Object get(Object key) { return pyGlobals.get(key.toString()); }
+    /**
+     * get the value of the variable with the given name as the given type.
+     * @param key the name of the variable
+     * @param type the type to cast the variable to
+     * */
     @Nullable
     public <T> T getAs(String key, Class<T> type){ return Py.tojava((PyObject) pyGlobals.get(key), type); }
     @Override public Object put(String key, Object value) { return pyGlobals.put(new PyString(key),value); }

@@ -2,5 +2,7 @@ package tech.cookiepower.wrench;
 
 import org.python.core.PyCode;
 
-public record CompiledCode(String fileName,PyCode pyCode) {
-}
+/**
+ * A compiled Python code object.
+ * */
+public record CompiledCode(PyCode pyCode) {}
