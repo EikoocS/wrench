@@ -1,0 +1,8 @@
+name: Wrench
+version: '${wrench_version}'
+main: tech.cookiepower.wrench.Wrench
+bootstrapper: tech.cookiepower.wrench.WrenchBootstrap
+loader: tech.cookiepower.wrench.WrenchLoader
+description: JavaScript Support for Folia
+api-version: '1.21.4'
+folia-supported: true
