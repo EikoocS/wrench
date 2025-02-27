@@ -22,6 +22,8 @@ public class WrenchLoader implements PluginLoader {
         );
         resolver.addDependency(new Dependency(new DefaultArtifact("org.mozilla:rhino:1.8.0"), null));
 
+        resolver.addDependency(new Dependency(new DefaultArtifact("org.reflections:reflections:0.10.2"), null));
+
         classpathBuilder.addLibrary(resolver);
     }
 

@@ -1,18 +1,18 @@
 package tech.cookiepower.wrench;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import org.mozilla.javascript.Context;
-import org.mozilla.javascript.Scriptable;
+import tech.cookiepower.wrench.standard.EventNameMap;
+
+import java.util.logging.Logger;
 
 public class Wrench extends JavaPlugin {
+    public static Logger logger;
+    public static Wrench plugin;
     @Override
     public void onEnable() {
-        try (Context context = Context.enter()){
-            Scriptable scope = context.initStandardObjects();
-            Object result = context.evaluateString(scope, "'Hello Rhino!'","<stdin>",1,null);
-            getLogger().info(Context.toString(result));
-        }catch (Exception e){
-            getLogger().warning(e.getLocalizedMessage());
-        }
+        logger = getLogger();
+        plugin = this;
+        EventNameMap.init();
+        ScriptManager.getInstance();
     }
 }
